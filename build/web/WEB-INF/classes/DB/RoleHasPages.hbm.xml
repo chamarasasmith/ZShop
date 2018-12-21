@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 18, 2018 5:14:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DB.RoleHasPages" table="role_has_pages" catalog="zshop" optimistic-lock="version">
+        <id name="rpid" type="java.lang.Integer">
+            <column name="rpid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pages" class="DB.Pages" fetch="select">
+            <column name="pages_idpages" />
+        </many-to-one>
+        <many-to-one name="role" class="DB.Role" fetch="select">
+            <column name="role_idrole" />
+        </many-to-one>
+        <property name="st" type="string">
+            <column name="st" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

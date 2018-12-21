@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 18, 2018 5:14:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DB.Role" table="role" catalog="zshop" optimistic-lock="version">
+        <id name="idrole" type="java.lang.Integer">
+            <column name="idrole" />
+            <generator class="identity" />
+        </id>
+        <property name="rname" type="string">
+            <column name="rname" length="145" />
+        </property>
+        <property name="st" type="string">
+            <column name="st" length="45" />
+        </property>
+        <set name="logins" table="login" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="role_idrole" not-null="true" />
+            </key>
+            <one-to-many class="DB.Login" />
+        </set>
+        <set name="roleHasPageses" table="role_has_pages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="role_idrole" />
+            </key>
+            <one-to-many class="DB.RoleHasPages" />
+        </set>
+    </class>
+</hibernate-mapping>

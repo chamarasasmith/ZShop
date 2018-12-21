@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 18, 2018 5:14:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DB.Products" table="products" catalog="zshop" optimistic-lock="version">
+        <id name="idproducts" type="java.lang.Integer">
+            <column name="idproducts" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="brand" class="DB.Brand" fetch="select">
+            <column name="brand_idbrand" not-null="true" />
+        </many-to-one>
+        <many-to-one name="category" class="DB.Category" fetch="select">
+            <column name="category_idcategory" not-null="true" />
+        </many-to-one>
+        <property name="pname" type="string">
+            <column name="pname" length="45" />
+        </property>
+        <property name="cprice" type="java.lang.Double">
+            <column name="cprice" precision="22" scale="0" />
+        </property>
+        <property name="sprice" type="java.lang.Double">
+            <column name="sprice" precision="22" scale="0" />
+        </property>
+        <property name="mimg" type="string">
+            <column name="mimg" length="1045" />
+        </property>
+        <property name="des" type="string">
+            <column name="des" length="545" />
+        </property>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
+        <property name="min" type="java.lang.Integer">
+            <column name="min" />
+        </property>
+        <property name="st" type="string">
+            <column name="st" length="45" />
+        </property>
+        <set name="cartHasProductses" table="cart_has_products" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="products_idproducts" />
+            </key>
+            <one-to-many class="DB.CartHasProducts" />
+        </set>
+        <set name="ratings" table="rating" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="products_idproducts" not-null="true" />
+            </key>
+            <one-to-many class="DB.Rating" />
+        </set>
+        <set name="invoiceHasProductses" table="invoice_has_products" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="products_idproducts" />
+            </key>
+            <one-to-many class="DB.InvoiceHasProducts" />
+        </set>
+        <set name="commentses" table="comments" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="products_idproducts" not-null="true" />
+            </key>
+            <one-to-many class="DB.Comments" />
+        </set>
+    </class>
+</hibernate-mapping>

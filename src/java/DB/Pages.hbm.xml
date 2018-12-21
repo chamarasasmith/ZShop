@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 18, 2018 5:14:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DB.Pages" table="pages" catalog="zshop" optimistic-lock="version">
+        <id name="idpages" type="java.lang.Integer">
+            <column name="idpages" />
+            <generator class="identity" />
+        </id>
+        <property name="pagesname" type="string">
+            <column name="pagesname" length="145" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="1000" />
+        </property>
+        <property name="st" type="string">
+            <column name="st" length="45" />
+        </property>
+        <set name="roleHasPageses" table="role_has_pages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pages_idpages" />
+            </key>
+            <one-to-many class="DB.RoleHasPages" />
+        </set>
+        <set name="loginlogHasPageses" table="loginlog_has_pages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pages_idpages" />
+            </key>
+            <one-to-many class="DB.LoginlogHasPages" />
+        </set>
+    </class>
+</hibernate-mapping>

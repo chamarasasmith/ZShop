@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 18, 2018 5:14:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DB.Loginlog" table="loginlog" catalog="zshop" optimistic-lock="version">
+        <id name="idloginlog" type="java.lang.Integer">
+            <column name="idloginlog" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="DB.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="logintime" type="time">
+            <column name="logintime" length="8" />
+        </property>
+        <property name="logouttime" type="time">
+            <column name="logouttime" length="8" />
+        </property>
+        <property name="logindate" type="date">
+            <column name="logindate" length="10" />
+        </property>
+        <property name="logoutdate" type="date">
+            <column name="logoutdate" length="10" />
+        </property>
+        <property name="st" type="string">
+            <column name="st" length="45" />
+        </property>
+        <set name="activities" table="activity" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="loginlog_idloginlog" not-null="true" />
+            </key>
+            <one-to-many class="DB.Activity" />
+        </set>
+        <set name="loginlogHasPageses" table="loginlog_has_pages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="loginlog_idloginlog" />
+            </key>
+            <one-to-many class="DB.LoginlogHasPages" />
+        </set>
+    </class>
+</hibernate-mapping>

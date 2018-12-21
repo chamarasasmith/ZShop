@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 18, 2018 5:14:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="DB.User" table="user" catalog="zshop" optimistic-lock="version">
+        <id name="iduser" type="java.lang.Integer">
+            <column name="iduser" />
+            <generator class="identity" />
+        </id>
+        <property name="fname" type="string">
+            <column name="fname" length="145" />
+        </property>
+        <property name="lname" type="string">
+            <column name="lname" length="145" />
+        </property>
+        <property name="img" type="string">
+            <column name="img" length="445" />
+        </property>
+        <property name="street" type="string">
+            <column name="street" length="445" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="145" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="145" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday" length="10" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="45" />
+        </property>
+        <property name="tel" type="string">
+            <column name="tel" length="45" />
+        </property>
+        <property name="mob" type="string">
+            <column name="mob" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="245" />
+        </property>
+        <property name="jdate" type="date">
+            <column name="jdate" length="10" />
+        </property>
+        <property name="st" type="string">
+            <column name="st" length="45" />
+        </property>
+        <set name="carts" table="cart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="DB.Cart" />
+        </set>
+        <set name="logins" table="login" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="DB.Login" />
+        </set>
+        <set name="loginlogs" table="loginlog" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="DB.Loginlog" />
+        </set>
+        <set name="uratings" table="urating" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="DB.Urating" />
+        </set>
+        <set name="chatsForUserIduser" table="chat" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" />
+            </key>
+            <one-to-many class="DB.Chat" />
+        </set>
+        <set name="chatsForUserIduser1" table="chat" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser1" />
+            </key>
+            <one-to-many class="DB.Chat" />
+        </set>
+        <set name="invoices" table="invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="DB.Invoice" />
+        </set>
+    </class>
+</hibernate-mapping>

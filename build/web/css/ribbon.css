@@ -1,0 +1,72 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 25, 2017, 7:29:16 PM
+    Author     : chama
+*/
+
+.lbox {
+    box-sizing: content-box;
+    padding: 10px;
+    overflow: auto;
+    background-color: white;
+    width: 100%; 
+    position: relative;
+    border: 1px solid #BBB;
+    border-radius: 30px;  
+}
+
+.box {
+    background-color: white;
+    width: 220px; 
+    height: 300px;
+    position: relative;
+    border: 1px solid #BBB;
+    border-radius: 30px;
+}
+.ribbon {
+    position: absolute;
+    left: -5px; top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px; height: 75px;
+    text-align: right;
+}
+.ribbon span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    width: 100px;
+    display: block;
+    background: #79A70A;
+    background: linear-gradient(#05EFF7 0%, #087F8F 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 19px; left: -21px;
+}
+.ribbon span::before {
+    content: "";
+    position: absolute; left: 0px; top: 100%;
+    z-index: -1;
+    border-left: 3px solid #087F8F;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #087F8F;
+}
+.ribbon span::after {
+    content: "";
+    position: absolute; right: 0px; top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #087F8F;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #087F8F;
+}
